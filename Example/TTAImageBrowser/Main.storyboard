@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fzN-OD-9Vo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="rlc-Kk-iKu">
+            <objects>
+                <viewController id="fzN-OD-9Vo" customClass="ViewController" customModule="TTAImageBrowser_Example" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X1j-hV-kbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="vmF-jr-sat"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c1n-IH-VHh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rQa-Hp-PmI">
+                                <rect key="frame" x="32.5" y="178.5" width="310" height="310"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fvK-B8-511">
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="90"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_0" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-lU-ldL">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="Bfw-RO-PPi"/>
+                                                    <constraint firstAttribute="width" constant="90" id="c0o-IE-8Gv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_1" translatesAutoresizingMaskIntoConstraints="NO" id="EqX-bf-HEn">
+                                                <rect key="frame" x="110" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_2" translatesAutoresizingMaskIntoConstraints="NO" id="0is-hT-p7Y">
+                                                <rect key="frame" x="220" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tfB-sE-lOm">
+                                        <rect key="frame" x="0.0" y="110" width="310" height="90"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_3" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-mP-y5H">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_4" translatesAutoresizingMaskIntoConstraints="NO" id="YKf-aY-4Qr">
+                                                <rect key="frame" x="110" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_5" translatesAutoresizingMaskIntoConstraints="NO" id="Df4-tA-ufS">
+                                                <rect key="frame" x="220" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SDA-4e-I0P">
+                                        <rect key="frame" x="0.0" y="220" width="310" height="90"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_6" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-Xq-nQe">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_7" translatesAutoresizingMaskIntoConstraints="NO" id="6OX-qy-Omh">
+                                                <rect key="frame" x="110" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_8" translatesAutoresizingMaskIntoConstraints="NO" id="EQR-rf-KXv">
+                                                <rect key="frame" x="220" y="0.0" width="90" height="90"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rQa-Hp-PmI" firstAttribute="centerX" secondItem="c1n-IH-VHh" secondAttribute="centerX" id="Oi8-b8-VBQ"/>
+                            <constraint firstItem="rQa-Hp-PmI" firstAttribute="centerY" secondItem="c1n-IH-VHh" secondAttribute="centerY" id="hyc-Pl-hUj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="imageViews" destination="O8g-lU-ldL" collectionClass="NSMutableArray" id="5YN-gG-Eay"/>
+                        <outletCollection property="imageViews" destination="EqX-bf-HEn" collectionClass="NSMutableArray" id="go3-0g-fwE"/>
+                        <outletCollection property="imageViews" destination="0is-hT-p7Y" collectionClass="NSMutableArray" id="vb5-Pa-7ub"/>
+                        <outletCollection property="imageViews" destination="ZKV-mP-y5H" collectionClass="NSMutableArray" id="N2w-dq-2iZ"/>
+                        <outletCollection property="imageViews" destination="YKf-aY-4Qr" collectionClass="NSMutableArray" id="kf6-hU-yeU"/>
+                        <outletCollection property="imageViews" destination="Df4-tA-ufS" collectionClass="NSMutableArray" id="MoK-j6-Vtc"/>
+                        <outletCollection property="imageViews" destination="N9f-Xq-nQe" collectionClass="NSMutableArray" id="Eda-WP-ePw"/>
+                        <outletCollection property="imageViews" destination="6OX-qy-Omh" collectionClass="NSMutableArray" id="z2L-bN-dA9"/>
+                        <outletCollection property="imageViews" destination="EQR-rf-KXv" collectionClass="NSMutableArray" id="DBW-vV-5qU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nd9-ze-iMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-170.40000000000001" y="119.1904047976012"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="image_0" width="240" height="240"/>
+        <image name="image_1" width="240" height="240"/>
+        <image name="image_2" width="500" height="500"/>
+        <image name="image_3" width="500" height="499"/>
+        <image name="image_4" width="350" height="350"/>
+        <image name="image_5" width="500" height="500"/>
+        <image name="image_6" width="350" height="350"/>
+        <image name="image_7" width="500" height="475"/>
+        <image name="image_8" width="320" height="319"/>
+    </resources>
+</document>

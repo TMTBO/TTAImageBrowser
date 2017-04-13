@@ -1,0 +1,26 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Kingfisher (3.6.2)
+  - TTAImageBrowser (0.1.0):
+    - Kingfisher
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - TTAImageBrowser (from `../`)
+
+EXTERNAL SOURCES:
+  TTAImageBrowser:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
+  TTAImageBrowser: b7274061fe2b905868d20a23074b18d2e34602fc
+
+PODFILE CHECKSUM: c606f03448033a96c2362e92abdd3780c4649e43
+
+COCOAPODS: 1.2.0

@@ -1,0 +1,6 @@
+framework module TTAImageBrowser {
+  umbrella header "TTAImageBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}

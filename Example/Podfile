@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TTAImageBrowser_Example' do
+  pod 'TTAImageBrowser', :path => '../'
+
+  target 'TTAImageBrowser_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
