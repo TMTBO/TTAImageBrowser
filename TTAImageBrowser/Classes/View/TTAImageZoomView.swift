@@ -24,7 +24,6 @@ class TTAImageZoomView: UIScrollView {
         super.init(coder: aDecoder)
         setupUI()
     }
-
 }
 
 // MARK: - Public Method
@@ -151,7 +150,7 @@ fileprivate extension TTAImageZoomView {
             let copyImageURLAction = UIAlertAction(title: "Copy Image URL", style: .default) { (alert) in
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = imageURLStr
-                print("Copy Success")
+                TTAImageBrowserRemindHUD.show("Copy Success")
             }
             sheet.addAction(copyImageURLAction)
         }
@@ -180,9 +179,9 @@ fileprivate extension TTAImageZoomView {
     
     @objc func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafeRawPointer) {
         if error == nil {
-            print("Save Success")
+            TTAImageBrowserRemindHUD.show("Save Success")
         } else {
-            print("Save Failed")
+            TTAImageBrowserRemindHUD.show("Save Failed")
         }
     }
 }
