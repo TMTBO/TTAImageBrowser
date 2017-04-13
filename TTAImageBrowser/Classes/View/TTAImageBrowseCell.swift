@@ -13,7 +13,7 @@ class TTAImageBrowseCell: UICollectionViewCell {
     var item: TTAImageBrowserViewModel! {
         didSet {
             startSpinner()
-            zoomView.config(from: item.thumbnailImageViewFrame, to: item.bigImageViewFrame, image: item.image, isFirstOpen: item.isFirstOpen)
+            zoomView.config(from: item.thumbnailImageViewFrame, to: item.bigImageViewFrame, image: item.image, imageURLString: item.browserItem.imageURL, isFirstOpen: item.isFirstOpen)
             item.loadImage { [weak self] (image, error) in
                 guard let `self` = self else { return }
                 self.zoomView.config(image: image)

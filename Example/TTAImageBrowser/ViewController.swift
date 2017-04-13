@@ -47,8 +47,8 @@ extension ViewController {
             item.element.tag = ViewControllerConst.imageViewBaseTag + item.offset
             item.element.addGestureRecognizer(tap)
             
-//            return TTAImageBrowserViewModel(imageURL: ViewControllerConst.imageURLs[item.offset], thumbnailImageView: item.element)
-            return TTAImageBrowserViewModel(image: item.element.image, thumbnailImageView: item.element)
+            return TTAImageBrowserViewModel(imageURL: ViewControllerConst.imageURLs[item.offset], thumbnailImageView: item.element)
+//            return TTAImageBrowserViewModel(image: item.element.image, thumbnailImageView: item.element)
         }
     }
     

@@ -13,6 +13,7 @@ class TTAImageZoomView: UIScrollView {
     fileprivate let imageView = UIImageView()
     fileprivate var imageViewFromFrame: CGRect!
     fileprivate var imageViewToFrame: CGRect!
+    fileprivate var imageURLString: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,9 +32,11 @@ class TTAImageZoomView: UIScrollView {
 extension TTAImageZoomView {
     
     /// Config the imageView's `image` and if it's the firstOpen then animation from `fromFram` to `toFrame`
-    public func config(from fromFrame: CGRect, to toFrame: CGRect, image: UIImage?, isFirstOpen: Bool) {
+    public func config(from fromFrame: CGRect, to toFrame: CGRect, image: UIImage?, imageURLString: String?, isFirstOpen: Bool) {
         imageView.image = image
         imageView.frame = fromFrame
+        self.imageURLString = imageURLString
+        
         imageViewFromFrame = fromFrame
         imageViewToFrame = toFrame
         guard isFirstOpen else {
@@ -76,6 +79,7 @@ fileprivate extension TTAImageZoomView {
             backgroundColor = UIColor(white: 0, alpha: 0.9)
             
             imageView.alpha = 1.0
+            imageView.isUserInteractionEnabled = true
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction(tap:)))
             addGestureRecognizer(tap)
@@ -83,6 +87,10 @@ fileprivate extension TTAImageZoomView {
             let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapGestureAction(doubleTap:)))
             doubleTap.numberOfTapsRequired = 2
             addGestureRecognizer(doubleTap)
+            
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureAction(longPress:)))
+            longPress.minimumPressDuration = 1
+            imageView.addGestureRecognizer(longPress)
             
             // TODO: Finish the pan gesture
 //            let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(pan:)))
@@ -130,6 +138,34 @@ fileprivate extension TTAImageZoomView {
             zoom(to: zoomToRect, animated: true)
         }
     }
+    @objc func longPressGestureAction(longPress: UILongPressGestureRecognizer) {
+        guard longPress.state == .began else { return }
+        let sheet = UIAlertController(title: "Tips", message: "What you wanna to do?", preferredStyle: .actionSheet)
+        let saveImageAction = UIAlertAction(title: "Save Image", style: .default) { [weak self] (alert) in
+            guard let `self` = self else { return }
+            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(self.image(image:didFinishSavingWithError:
+                contextInfo:)), nil)
+        }
+        sheet.addAction(saveImageAction)
+        if let imageURLStr = imageURLString {
+            let copyImageURLAction = UIAlertAction(title: "Copy Image URL", style: .default) { (alert) in
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = imageURLStr
+                print("Copy Success")
+            }
+            sheet.addAction(copyImageURLAction)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        sheet.addAction(cancelAction)
+        
+        var topController = UIApplication.shared.keyWindow?.rootViewController
+        while (topController?.presentedViewController != nil) {
+            topController = topController?.presentedViewController
+        }
+        topController?.present(sheet, animated: true, completion: nil)
+    }
+    
+    
     @objc func panGestureAction(pan: UIPanGestureRecognizer) {
         if pan.state == .began || pan.state == .changed {
             let point = pan.translation(in: self)
@@ -139,6 +175,14 @@ fileprivate extension TTAImageZoomView {
             pan.setTranslation(.zero, in: self)
         } else if pan.state == .ended {
             imageView.frame = imageViewToFrame
+        }
+    }
+    
+    @objc func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafeRawPointer) {
+        if error == nil {
+            print("Save Success")
+        } else {
+            print("Save Failed")
         }
     }
 }
