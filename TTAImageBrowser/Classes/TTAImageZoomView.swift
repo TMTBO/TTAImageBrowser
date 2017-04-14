@@ -9,6 +9,52 @@
 import UIKit
 
 class TTAImageZoomView: UIScrollView {
+    
+    struct TTAImageZoomViewConst {
+        
+        static var tips: String {
+            return getLocalizableString("Tips")
+        }
+        static var tipMessage: String {
+            return getLocalizableString("What you wanna do?")
+        }
+        static var saveImage: String {
+            return getLocalizableString("Save Image")
+        }
+        static var copyImageURL: String {
+            return getLocalizableString("Copy Image URL")
+        }
+        static var copySuccess: String {
+            return getLocalizableString("Copy Success")
+        }
+        static var cancel: String {
+            return getLocalizableString("Cancel")
+        }
+        static var saveSuccess: String {
+            return getLocalizableString("Save Success")
+        }
+        static var saveFailed: String {
+            return getLocalizableString("Save Failed")
+        }
+        
+        static func getLocalizableString(_ key: String) -> String {
+            guard var language = NSLocale.preferredLanguages.first else { return key }
+            if language.hasPrefix("en") {
+                language = "en"
+            } else if language.hasPrefix("zh") {
+                language = "zh-Hans"
+            } else {
+                language = "en"
+            }
+            var bundle = Bundle(for: TTAImageZoomView.self)
+            if let resourcePath = bundle.path(forResource: "TTAImageBrowser", ofType: "bundle"),
+                let resourcesBundle = Bundle(path: resourcePath) {
+                bundle = resourcesBundle
+            }
+            let value = bundle.localizedString(forKey: key, value: nil, table: nil)
+            return Bundle.main.localizedString(forKey: key, value: value, table: nil)
+        }
+    }
 
     fileprivate let imageView = UIImageView()
     fileprivate var imageViewFromFrame: CGRect!
@@ -139,22 +185,22 @@ fileprivate extension TTAImageZoomView {
     }
     @objc func longPressGestureAction(longPress: UILongPressGestureRecognizer) {
         guard longPress.state == .began else { return }
-        let sheet = UIAlertController(title: "Tips", message: "What you wanna to do?", preferredStyle: .actionSheet)
-        let saveImageAction = UIAlertAction(title: "Save Image", style: .default) { [weak self] (alert) in
+        let sheet = UIAlertController(title: TTAImageZoomViewConst.tips, message: TTAImageZoomViewConst.tipMessage, preferredStyle: .actionSheet)
+        let saveImageAction = UIAlertAction(title: TTAImageZoomViewConst.saveImage, style: .default) { [weak self] (alert) in
             guard let `self` = self else { return }
             UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(self.image(image:didFinishSavingWithError:
                 contextInfo:)), nil)
         }
         sheet.addAction(saveImageAction)
         if let imageURLStr = imageURLString {
-            let copyImageURLAction = UIAlertAction(title: "Copy Image URL", style: .default) { (alert) in
+            let copyImageURLAction = UIAlertAction(title: TTAImageZoomViewConst.copyImageURL, style: .default) { (alert) in
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = imageURLStr
-                TTAImageBrowserRemindHUD.show("Copy Success")
+                TTAImageBrowserRemindHUD.show(TTAImageZoomViewConst.copySuccess)
             }
             sheet.addAction(copyImageURLAction)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: TTAImageZoomViewConst.cancel, style: .cancel, handler: nil)
         sheet.addAction(cancelAction)
         
         var topController = UIApplication.shared.keyWindow?.rootViewController
@@ -179,9 +225,9 @@ fileprivate extension TTAImageZoomView {
     
     @objc func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafeRawPointer) {
         if error == nil {
-            TTAImageBrowserRemindHUD.show("Save Success")
+            TTAImageBrowserRemindHUD.show(TTAImageZoomViewConst.saveSuccess)
         } else {
-            TTAImageBrowserRemindHUD.show("Save Failed")
+            TTAImageBrowserRemindHUD.show(TTAImageZoomViewConst.saveFailed)
         }
     }
 }
