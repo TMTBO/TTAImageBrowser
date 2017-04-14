@@ -11,30 +11,38 @@ import Kingfisher
 
 public class TTAImageBrowserViewModel {
     
+    ///
     fileprivate(set) var browserItem: TTABrowseItem!
     fileprivate(set) var image: UIImage?
     fileprivate(set) var thumbnailImageViewFrame: CGRect!
     fileprivate(set) var bigImageViewFrame: CGRect!
     public var isFirstOpen = false
     
+    /// Init the view model wiht image url and corresponding imageView
     public init(imageURL: String?, thumbnailImageView: UIImageView?) {
         browserItem = TTABrowseItem(imageURL: imageURL, thumbnailImageView: thumbnailImageView)
         image = thumbnailImageView?.image
         thumbnailImageViewFrame = convertThumbnailImageViewFrame()
         bigImageViewFrame = getBigImageViewFrame()
     }
+    
+    /// Init the view model wiht image localPath and corresponding imageView
     public init(imageLocalPath: String?, thumbnailImageView: UIImageView?) {
         browserItem = TTABrowseItem(imageLocalPath: imageLocalPath, thumbnailImageView: thumbnailImageView)
         image = thumbnailImageView?.image
         thumbnailImageViewFrame = convertThumbnailImageViewFrame()
         bigImageViewFrame = getBigImageViewFrame()
     }
+    
+    /// Init the view model wiht image and corresponding imageView
     public init(image: UIImage?, thumbnailImageView: UIImageView?) {
         browserItem = TTABrowseItem(image: image, thumbnailImageView: thumbnailImageView)
         self.image = image
         thumbnailImageViewFrame = convertThumbnailImageViewFrame()
         bigImageViewFrame = getBigImageViewFrame()
     }
+    
+    /// Init the view model wiht image data and corresponding imageView
     public init(data: Data?, thumbnailImageView: UIImageView?) {
         browserItem = TTABrowseItem(data: data, thumbnailImageView: thumbnailImageView)
         image = thumbnailImageView?.image

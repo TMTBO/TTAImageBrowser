@@ -8,13 +8,13 @@
 
 import UIKit
 
-class TTAImageBrowserRemindHUD: UIVisualEffectView {
+public class TTAImageBrowserRemindHUD: UIVisualEffectView {
     
-    static let shared = TTAImageBrowserRemindHUD()
+    public static let shared = TTAImageBrowserRemindHUD()
     
     fileprivate let tipLabel = UILabel()
     
-    init() {
+    public init() {
         let blureStyle: UIBlurEffectStyle
         if #available(iOS 10.0, *) {
             blureStyle = .prominent
@@ -26,7 +26,7 @@ class TTAImageBrowserRemindHUD: UIVisualEffectView {
         setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
@@ -37,8 +37,8 @@ class TTAImageBrowserRemindHUD: UIVisualEffectView {
 extension TTAImageBrowserRemindHUD {
     
     /// The HUD will always show in the center of the param `view`.
-    /// If your will is widder or highter than the screen, maybe you should pass a `nil` or `UIApplication.shared.keyWindow` to the `view`
-    static func show(_ message: String?, dismissAfter time: TimeInterval = 1, in view: UIView? = UIApplication.shared.keyWindow) {
+    /// If your will is widther or highter than the screen, maybe you should pass a `nil` or `UIApplication.shared.keyWindow` to the `view`
+    public static func show(_ message: String?, dismissAfter time: TimeInterval = 1, in view: UIView? = UIApplication.shared.keyWindow) {
         let hud = TTAImageBrowserRemindHUD.shared
         hud.calculateSize(string: message)
         guard let view = view else { return }
@@ -47,8 +47,9 @@ extension TTAImageBrowserRemindHUD {
         hud.tipLabel.text = message
         dismiss(after: time)
     }
+    
     /// Dismiss the the HUD
-    static func dismiss(after: TimeInterval) {
+    public static func dismiss(after: TimeInterval) {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             let hud = TTAImageBrowserRemindHUD.shared
             hud.removeFromSuperview()
@@ -59,6 +60,7 @@ extension TTAImageBrowserRemindHUD {
 // MARK: - Private Method
 
 extension TTAImageBrowserRemindHUD {
+    
     func calculateSize(string: String?) {
         let maxSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 100)
         let stringSize: CGSize
@@ -75,6 +77,7 @@ extension TTAImageBrowserRemindHUD {
 // MARK: - UI
 
 fileprivate extension TTAImageBrowserRemindHUD {
+    
     func setupUI() {
         func _addViews() {
             addSubview(tipLabel)

@@ -1,6 +1,5 @@
 # TTAImageBrowser
 
-[![CI Status](http://img.shields.io/travis/TMTBO/TTAImageBrowser.svg?style=flat)](https://travis-ci.org/TMTBO/TTAImageBrowser)
 [![Version](https://img.shields.io/cocoapods/v/TTAImageBrowser.svg?style=flat)](http://cocoapods.org/pods/TTAImageBrowser)
 [![License](https://img.shields.io/cocoapods/l/TTAImageBrowser.svg?style=flat)](http://cocoapods.org/pods/TTAImageBrowser)
 [![Platform](https://img.shields.io/cocoapods/p/TTAImageBrowser.svg?style=flat)](http://cocoapods.org/pods/TTAImageBrowser)

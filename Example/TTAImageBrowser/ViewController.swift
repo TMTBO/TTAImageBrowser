@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     struct ViewControllerConst {
         static let imageViewBaseTag = 10000
+        
+        /// Image URLs
         static let imageURLs = [
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492521519&di=f8efc9f875a3a225fd9bf1d2cd50fa86&imgtype=jpg&er=1&src=http%3A%2F%2Fmvimg2.meitudata.com%2F55be4423b469a1024.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492521538&di=2a461e943f531ebbc3f6ed7574b55cb9&imgtype=jpg&er=1&src=http%3A%2F%2Fmvimg1.meitudata.com%2F55d940244284e9219.jpg",
@@ -27,13 +29,35 @@ class ViewController: UIViewController {
             ]
     }
     
-    var browseItems: [TTAImageBrowserViewModel]!
-    
+    /// Item group
+    var groups = [[TTAImageBrowserViewModel]]()
+    /// ImageViews group
+    /// Actaully these imageViews can be collection view too
     @IBOutlet var imageViews: [UIImageView]!
 
+    @IBOutlet weak var slider: UISlider!
+    
+    @IBOutlet weak var toastSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGesture()
+        
+        // Get The Items in 4 different way
+        getBrowseURLItems()
+        getBrowsePathItems()
+        getBrowseDataItems()
+        getBrowseImageItems()
+        
+        
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        slider.value = Float(currentValue)
+    }
+    
+    var currentValue: Int = 0
+    func sliderValueChanged() {
+        currentValue = Int(slider.value)
+        slider.setValue(Float(currentValue), animated: true)
     }
 
 }
@@ -41,27 +65,70 @@ class ViewController: UIViewController {
 extension ViewController {
     
     func addTapGesture() {
-        browseItems = imageViews.enumerated().map { (item) -> TTAImageBrowserViewModel in
+        _ = imageViews.enumerated().map { (item) -> () in
             let tap = UITapGestureRecognizer(target: self, action: #selector(tap(tap:)))
             item.element.isUserInteractionEnabled = true
             item.element.tag = ViewControllerConst.imageViewBaseTag + item.offset
             item.element.addGestureRecognizer(tap)
-            
-            return TTAImageBrowserViewModel(imageURL: ViewControllerConst.imageURLs[item.offset], thumbnailImageView: item.element)
-//            return TTAImageBrowserViewModel(image: item.element.image, thumbnailImageView: item.element)
         }
     }
     
-    @objc func tap(tap: UITapGestureRecognizer) {
+    /// Get the item which has url
+    func getBrowseURLItems() {
+        let urlitems = imageViews.enumerated().map { (item) -> TTAImageBrowserViewModel in
+            /// thumbnailImageView is the imageView with the imageURL
+            return TTAImageBrowserViewModel(imageURL: ViewControllerConst.imageURLs[item.offset], thumbnailImageView: item.element)
+        }
+        groups.append(urlitems)
+    }
+    /// Get the item which has local image path
+    func getBrowsePathItems() {
+        guard let bundlePath = Bundle.main.path(forResource: "Images", ofType: "bundle") else { return }
+        let pathitems = imageViews.enumerated().map { (item) -> TTAImageBrowserViewModel in
+            let imageName = "/image_\(item.offset).jpeg"
+            /// thumbnailImageView is the imageView with the imageLocalPath
+            return TTAImageBrowserViewModel(imageLocalPath: bundlePath.appending(imageName), thumbnailImageView: item.element)
+        }
+        groups.append(pathitems)
+    }
+    /// Get the item which has image data
+    func getBrowseDataItems() {
+        let dataitems = imageViews.enumerated().map { (item) -> TTAImageBrowserViewModel in
+            /// thumbnailImageView is the imageView with the image data
+            return TTAImageBrowserViewModel(data: UIImageJPEGRepresentation(item.element.image!, 1)!, thumbnailImageView: item.element)
+        }
+        groups.append(dataitems)
+    }
+    /// Get the item which has image
+    func getBrowseImageItems() {
+        let imageitems = imageViews.enumerated().map { (item) -> TTAImageBrowserViewModel in
+            /// thumbnailImageView is the imageView with the image
+            return TTAImageBrowserViewModel(image: item.element.image, thumbnailImageView: item.element)
+        }
+        groups.append(imageitems)
+    }
+    
+    /// Tap gesture action to show the image browser
+    func tap(tap: UITapGestureRecognizer) {
         guard let view = tap.view else { return };
         let tag = view.tag - ViewControllerConst.imageViewBaseTag
-        let browseVc = TTAImageBrowserViewController(browseItems, currentIndex:tag)
+        
+        /// Init the browser with the broweItems (one of 4 above), and the index you just tap
+        let browseVc = TTAImageBrowserViewController(groups[currentValue], currentIndex:tag)
+        
+        /// The animation timeInterval when the browse show and dismiss
         browseVc.animationTimeInterval = 0.3
-        browseVc.show(nil)
+        if toastSwitch.isOn {
+            /// Show the browser and do something you want after the browser has been shown
+            browseVc.show {
+                TTAImageBrowserRemindHUD.show("browseVc Show Success!")
+            }
+        } else {
+            /// Show the broser
+            browseVc.show()
+        }
 
-        
-        
-        print(NSHomeDirectory())
+        print("Home Dic Path" + NSHomeDirectory())
     }
 }
 

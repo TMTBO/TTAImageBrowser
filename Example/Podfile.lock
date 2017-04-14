@@ -6,7 +6,7 @@ PODS:
     - FBSnapshotTestCase/Core
   - Kingfisher (3.6.2)
   - TTAImageBrowser (0.1.0):
-    - Kingfisher
+    - Kingfisher (= 3.6.2)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
-  TTAImageBrowser: b7274061fe2b905868d20a23074b18d2e34602fc
+  TTAImageBrowser: 6aaf5d7905c0794a2ef0b6287602cf1c59b9a323
 
 PODFILE CHECKSUM: b909e7b8d292713d05390d1bfd5b0b120fcb2f8b
 

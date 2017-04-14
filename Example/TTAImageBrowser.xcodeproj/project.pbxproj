@@ -14,6 +14,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		620EF98D272466AE61E76519 /* Pods_TTAImageBrowser_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72294F5F85A5B0D46AF3149F /* Pods_TTAImageBrowser_Tests.framework */; };
 		791E137B1E9D0B6A0000A9DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791E137A1E9D0B6A0000A9DB /* Main.storyboard */; };
+		7957E2D51EA0AF28000C6861 /* Images.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7957E2D41EA0AF28000C6861 /* Images.bundle */; };
 		E92B42C9911BF5C1A885DBD0 /* Pods_TTAImageBrowser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389DF25680A7B5CC10BF8697 /* Pods_TTAImageBrowser_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		72294F5F85A5B0D46AF3149F /* Pods_TTAImageBrowser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTAImageBrowser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		791E137A1E9D0B6A0000A9DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7957E2D41EA0AF28000C6861 /* Images.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Images.bundle; sourceTree = "<group>"; };
 		9ADB2260A6151A277648F9E8 /* Pods-TTAImageBrowser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTAImageBrowser_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTAImageBrowser_Example/Pods-TTAImageBrowser_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ADB517F5D0313BF4E321E0BB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B2057583D4B7F9A5D75F8E70 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				791E137A1E9D0B6A0000A9DB /* Main.storyboard */,
+				7957E2D41EA0AF28000C6861 /* Images.bundle */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -253,6 +256,7 @@
 				791E137B1E9D0B6A0000A9DB /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				7957E2D51EA0AF28000C6861 /* Images.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

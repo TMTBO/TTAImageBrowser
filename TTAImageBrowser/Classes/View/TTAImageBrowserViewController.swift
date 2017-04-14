@@ -1,10 +1,10 @@
 //
-//  TTAImageBrowserViewController.swift
-//  Pods
+//  TTAImageBrowser
+//  TobyoTenma
 //
 //  Created by TobyoTenma on 11/04/2017.
 //
-//
+//  Github: https://github.com/TMTBO/TTAImageBrowser
 
 import UIKit
 
@@ -18,6 +18,7 @@ public class TTAImageBrowserViewController: UICollectionViewController {
         static var animationTimeInterval = 0.5
     }
     
+    // MARK: - Public Method
     /// The timeInterval when the image browse enter and exit
     public var animationTimeInterval: TimeInterval = 0.5 {
         didSet {
@@ -25,9 +26,12 @@ public class TTAImageBrowserViewController: UICollectionViewController {
         }
     }
     
+    /// The items the browser Show
     fileprivate(set) var browserItems: [TTAImageBrowserViewModel]!
+    /// The index the browser current show
     fileprivate(set) var currentIndex = 0
     
+    // MARK: - Private Method
     fileprivate let pageControl = UIPageControl()
     fileprivate var layout = UICollectionViewFlowLayout()
     
@@ -56,8 +60,11 @@ extension TTAImageBrowserViewController {
         self.currentIndex = currentIndex
     }
     
+    
     /// Show The ImageBrowser
-    public func show(_ completionHandler: (() -> ())?) {
+    ///
+    /// - Parameter completionHandler: The handler after the browser has been shown
+    public func show(_ completionHandler: (() -> ())? = nil) {
         let topController = UIApplication.shared.keyWindow?.rootViewController
         providesPresentationContextTransitionStyle = true
         definesPresentationContext = true

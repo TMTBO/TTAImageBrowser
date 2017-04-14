@@ -21,7 +21,7 @@
   "source_files": "TTAImageBrowser/Classes/**/*",
   "dependencies": {
     "Kingfisher": [
-
+      "3.6.2"
     ]
   }
 }
