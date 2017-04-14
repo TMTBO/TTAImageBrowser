@@ -10,7 +10,7 @@ import UIKit
 
 public class TTAImageBrowserRemindHUD: UIVisualEffectView {
     
-    public static let shared = TTAImageBrowserRemindHUD()
+    static let shared = TTAImageBrowserRemindHUD()
     
     fileprivate let tipLabel = UILabel()
     

@@ -11,11 +11,12 @@ import Kingfisher
 
 public class TTAImageBrowserViewModel {
     
-    ///
     fileprivate(set) var browserItem: TTABrowseItem!
     fileprivate(set) var image: UIImage?
     fileprivate(set) var thumbnailImageViewFrame: CGRect!
     fileprivate(set) var bigImageViewFrame: CGRect!
+    
+    /// Is the first one when open or not
     public var isFirstOpen = false
     
     /// Init the view model wiht image url and corresponding imageView
