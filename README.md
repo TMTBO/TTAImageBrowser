@@ -7,6 +7,7 @@
 ## Picture & Gif
 
 ![TTAImageBrowser](https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser.gif)
+![TTAImageBrowser](https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser_SaveImage.gif)
 
 ## Example
 

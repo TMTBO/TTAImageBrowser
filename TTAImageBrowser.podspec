@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'TTAImageBrowser'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of TTAImageBrowser.'
+  s.summary          = 'TTAImageBrowser is A Image Browser'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,11 +18,11 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+TTAImageBrowser is A Image Browser that you can broswe the image from net, local path, imageData and image
                        DESC
 
   s.homepage         = 'https://github.com/TMTBO/TTAImageBrowser'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+# s.screenshots     = 'https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser.gif', 'https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser_SaveImage.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'TMTBO' => 'tmtbo@hotmail.com' }
   s.source           = { :git => 'https://github.com/TMTBO/TTAImageBrowser.git', :tag => s.version.to_s }
