@@ -46,11 +46,11 @@ class TTAImageZoomView: UIScrollView {
             } else {
                 language = "en"
             }
-            var bundle = Bundle(for: TTAImageZoomView.self)
-            if let resourcePath = bundle.path(forResource: "TTAImageBrowser", ofType: "bundle"),
-                let resourcesBundle = Bundle(path: resourcePath) {
-                bundle = resourcesBundle
-            }
+            guard let resourcePath = Bundle(for: TTAImageZoomView.self).path(forResource: "TTAImageBrowser", ofType: "bundle"),
+                let resourcesBundle = Bundle(path: resourcePath),
+                let resourcesPath = resourcesBundle.path(forResource: language, ofType: "lproj"),
+                let bundle = Bundle(path: resourcesPath) else { return key }
+            
             let value = bundle.localizedString(forKey: key, value: nil, table: nil)
             return Bundle.main.localizedString(forKey: key, value: value, table: nil)
         }
