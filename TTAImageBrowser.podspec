@@ -24,7 +24,7 @@ TTAImageBrowser is A Image Browser that you can broswe the image from net, local
   s.homepage         = 'https://github.com/TMTBO/TTAImageBrowser'
 # s.screenshots     = 'https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser.gif', 'https://github.com/TMTBO/TTAImageBrowser/blob/master/TTAImageBrowser_SaveImage.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'TMTBO' => 'tmtbo@hotmail.com' }
+  s.author           = { 'TobyoTenma' => 'tmtbo@hotmail.com' }
   s.source           = { :git => 'https://github.com/TMTBO/TTAImageBrowser.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
