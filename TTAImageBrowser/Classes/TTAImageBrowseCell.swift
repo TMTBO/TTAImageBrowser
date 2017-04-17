@@ -67,7 +67,7 @@ fileprivate extension TTAImageBrowseCell {
             contentView.addSubview(spinner)
         }
         func _configViews() {
-            
+            zoomView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         }
         _addViews()
         _configViews()

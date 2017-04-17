@@ -78,6 +78,8 @@ extension TTAImageZoomView {
     
     /// Config the imageView's `image` and if it's the firstOpen then animation from `fromFram` to `toFrame`
     public func config(from fromFrame: CGRect, to toFrame: CGRect, image: UIImage?, imageURLString: String?, isFirstOpen: Bool) {
+        zoomScale = 1
+        
         imageView.image = image
         imageView.frame = fromFrame
         self.imageURLString = imageURLString
@@ -101,14 +103,6 @@ extension TTAImageZoomView {
     }
 }
 
-// MARK: - LifeCycle
-
-extension TTAImageZoomView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-}
-
 // MARK: - UI
 
 fileprivate extension TTAImageZoomView {
@@ -120,11 +114,12 @@ fileprivate extension TTAImageZoomView {
             
             delegate = self
             minimumZoomScale = 0.5
-            maximumZoomScale = 3
+            maximumZoomScale = 2
+            showsVerticalScrollIndicator = false
+            showsHorizontalScrollIndicator = false
             backgroundColor = UIColor(white: 0, alpha: 0.9)
             
             imageView.alpha = 1.0
-            imageView.isUserInteractionEnabled = true
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction(tap:)))
             addGestureRecognizer(tap)
@@ -135,14 +130,7 @@ fileprivate extension TTAImageZoomView {
             
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureAction(longPress:)))
             longPress.minimumPressDuration = 1
-            imageView.addGestureRecognizer(longPress)
-            
-            // TODO: Finish the pan gesture
-//            let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(pan:)))
-//            pan.delegate = self
-//            pan.maximumNumberOfTouches = 1
-//            pan.minimumNumberOfTouches = 1
-//            addGestureRecognizer(pan)
+            addGestureRecognizer(longPress)
             
             tap.require(toFail: doubleTap)
         }
@@ -211,19 +199,6 @@ fileprivate extension TTAImageZoomView {
         topController?.present(sheet, animated: true, completion: nil)
     }
     
-    
-    @objc func panGestureAction(pan: UIPanGestureRecognizer) {
-        if pan.state == .began || pan.state == .changed {
-            let point = pan.translation(in: self)
-            let lineSpace = TTAImageBrowserViewController.TTAImageBrowserViewControllerConst.lineSpace
-            let toCenter = CGPoint(x: imageView.center.x + point.x - lineSpace / 2, y: imageView.center.y + point.y)
-            imageView.center = toCenter
-            pan.setTranslation(.zero, in: self)
-        } else if pan.state == .ended {
-            imageView.frame = imageViewToFrame
-        }
-    }
-    
     @objc func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafeRawPointer) {
         if error == nil {
             TTAImageBrowserRemindHUD.show(TTAImageZoomViewConst.saveSuccess)
@@ -240,19 +215,11 @@ extension TTAImageZoomView: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
+    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         let offsetX = bounds.width > contentSize.width ? (bounds.width - contentSize.width) * 0.5 : 0
         let offsetY = bounds.height > contentSize.height ? (bounds.height - contentSize.height) * 0.5 : 0
         let lineSpace = TTAImageBrowserViewController.TTAImageBrowserViewControllerConst.lineSpace
         imageView.center = CGPoint(x: contentSize.width * 0.5 + offsetX - lineSpace / 2, y: contentSize.height * 0.5 + offsetY)
-    }
-}
-
-// MARK: - UIGestureRecognizerDelegate
-
-extension TTAImageZoomView: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }
