@@ -165,7 +165,8 @@ fileprivate extension TTAImageZoomView {
         let time = TTAImageBrowserViewController.TTAImageBrowserViewControllerConst.animationTimeInterval
         UIView.animate(withDuration: time, animations: { [weak self] in
             guard let `self` = self else { return }
-            self.imageView.frame = self.imageViewFromFrame
+            let frame = self.convert(self.imageViewFromFrame, from: UIApplication.shared.keyWindow)
+            self.imageView.frame = frame
         }) { (isFinished) in
             let topController = UIApplication.shared.keyWindow?.rootViewController
             topController?.dismiss(animated: true, completion: nil)
