@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TTAImageBrowser'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'TTAImageBrowser is A Image Browser'
 
 # This description is used to generate tags and improve search results.
@@ -32,9 +32,9 @@ TTAImageBrowser is A Image Browser that you can broswe the image from net, local
 
   s.source_files = 'TTAImageBrowser/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'TTAImageBrowser' => ['TTAImageBrowser/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'TTAImageBrowser' => ['TTAImageBrowser/Resources/*.lproj']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

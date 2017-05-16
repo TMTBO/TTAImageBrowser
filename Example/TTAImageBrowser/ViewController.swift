@@ -30,36 +30,40 @@ class ViewController: UIViewController {
     }
     
     /// Item group
-    var groups = [[TTAImageBrowserViewModel]]()
+    var group = [TTAImageBrowserViewModel]()
     /// ImageViews group
     /// Actaully these imageViews can be collection view too
     @IBOutlet var imageViews: [UIImageView]!
 
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var toastSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGesture()
-        
-        // Get The Items in 4 different way
-        getBrowseURLItems()
-        getBrowsePathItems()
-        getBrowseDataItems()
-        getBrowseImageItems()
-        
-        
-        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
-        slider.value = Float(currentValue)
     }
     
-    var currentValue: Int = 0
-    func sliderValueChanged() {
-        currentValue = Int(slider.value)
-        slider.setValue(Float(currentValue), animated: true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        didSelectedBrowserType(segmentedControl)
     }
-
+    
+    @IBAction func didSelectedBrowserType(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        switch index {
+        case 0:
+            getBrowseURLItems()
+        case 1:
+            getBrowsePathItems()
+        case 2:
+            getBrowseDataItems()
+        case 3:
+            getBrowseImageItems()
+        default:
+            return
+        }
+    }
 }
 
 extension ViewController {
@@ -79,7 +83,7 @@ extension ViewController {
             /// thumbnailImageView is the imageView with the imageURL
             return TTAImageBrowserViewModel(imageURL: ViewControllerConst.imageURLs[item.offset], thumbnailImageView: item.element)
         }
-        groups.append(urlitems)
+        group = urlitems
     }
     /// Get the item which has local image path
     func getBrowsePathItems() {
@@ -89,7 +93,7 @@ extension ViewController {
             /// thumbnailImageView is the imageView with the imageLocalPath
             return TTAImageBrowserViewModel(imageLocalPath: bundlePath.appending(imageName), thumbnailImageView: item.element)
         }
-        groups.append(pathitems)
+        group = pathitems
     }
     /// Get the item which has image data
     func getBrowseDataItems() {
@@ -97,7 +101,7 @@ extension ViewController {
             /// thumbnailImageView is the imageView with the image data
             return TTAImageBrowserViewModel(data: UIImageJPEGRepresentation(item.element.image!, 1)!, thumbnailImageView: item.element)
         }
-        groups.append(dataitems)
+        group = dataitems
     }
     /// Get the item which has image
     func getBrowseImageItems() {
@@ -105,7 +109,7 @@ extension ViewController {
             /// thumbnailImageView is the imageView with the image
             return TTAImageBrowserViewModel(image: item.element.image, thumbnailImageView: item.element)
         }
-        groups.append(imageitems)
+        group = imageitems
     }
     
     /// Tap gesture action to show the image browser
@@ -114,7 +118,7 @@ extension ViewController {
         let tag = view.tag - ViewControllerConst.imageViewBaseTag
         
         /// Init the browser with the broweItems (one of 4 above), and the index you just tap
-        let browseVc = TTAImageBrowserViewController(groups[currentValue], currentIndex:tag)
+        let browseVc = TTAImageBrowserViewController(group, currentIndex:tag)
         
         /// The animation timeInterval when the browse show and dismiss
         browseVc.animationTimeInterval = 0.3

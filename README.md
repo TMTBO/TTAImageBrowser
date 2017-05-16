@@ -17,7 +17,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 >ios >= 8.0
 >
->swift >= 3.0
+>swift >= 3.1
 
 ## Installation
 
