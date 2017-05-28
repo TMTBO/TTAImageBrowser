@@ -1,6 +1,6 @@
 {
   "name": "TTAImageBrowser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "summary": "TTAImageBrowser is A Image Browser",
   "description": "TTAImageBrowser is A Image Browser that you can broswe the image from net, local path, imageData and image",
   "homepage": "https://github.com/TMTBO/TTAImageBrowser",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/TMTBO/TTAImageBrowser.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "Kingfisher": [
-      "3.6.2"
+
     ]
   }
 }

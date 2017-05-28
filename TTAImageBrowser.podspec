@@ -38,5 +38,5 @@ TTAImageBrowser is A Image Browser that you can broswe the image from net, local
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Kingfisher', '3.6.2'
+  s.dependency 'Kingfisher'
 end
